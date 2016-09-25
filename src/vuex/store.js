@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import mutations from './mutations'
+import mutations from './mutations/index'
 // 告诉 vue “使用” vuex
 Vue.use(Vuex)
 window.mutations = mutations
@@ -10,8 +10,8 @@ const state = {
   loading: true,
   count: 0,
   personinfo: {},
-  friendslist: [],
-  teamlist: [],
+  friends: [],
+  teams: [],
   teammembers: {},
   teammap: {},
   msgs: {},

@@ -1,4 +1,4 @@
-import util from 'lodash'
+import { util } from '../../util/index'
 import initialization from './initialization'
-window.util = util
-export default util.assign({}, initialization)
+import message from './message'
+export default util.assign({}, initialization, message)

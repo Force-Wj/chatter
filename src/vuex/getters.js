@@ -1,6 +1,3 @@
-export function getCount (state) {
-  return state.count
-}
 export function getMyAccount (state) {
   return state.account
 }
@@ -9,4 +6,13 @@ export function getInfo (state) {
 }
 export function getLoadingStatus (state) {
   return state.loading
+}
+export function getSessions (state) {
+  return state.sessions
+}
+export function getFriends (state) {
+  return state.friends
+}
+export function getTeams (state) {
+  return state.teams
 }
