@@ -1,5 +1,5 @@
-import { getAllAccounts } from './util/index'
-export function connect ({ dispatch }) {
+import { getAllAccounts, checkUserInfo } from './util/index'
+export function connect ({ dispatch, state }) {
   // 收集初始化需要获取的用户信息accid
   const accids = {}
   const nim = NIM.getInstance({
@@ -113,7 +113,6 @@ export function connect ({ dispatch }) {
   }
 
   function onSessions (data) {
-    debugger
     dispatch('SESSION', data, nim)
     for (let i = 0; i < data.length; i++) {
       if (data[i].scene === 'p2p') {
@@ -136,7 +135,9 @@ export function connect ({ dispatch }) {
   }
 
   function onMsg (data) {
-    dispatch('MSG', data)
+    debugger
+    const array = getAllAccounts(data)
+    checkUserInfo({ dispatch, state, nim }, array, () => dispatch('ADDMSG', data, data.sessionId))
   }
 
   function saveMsgs (data) {

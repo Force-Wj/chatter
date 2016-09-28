@@ -1,5 +1,5 @@
 <template>
-  Count is {{ account }}
+  accid is {{ account }}
   {{ info?info.nick:'' }}
   {{ info?info.avatar:'' }}
 </template>

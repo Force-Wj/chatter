@@ -16,3 +16,12 @@ export function getFriends (state) {
 export function getTeams (state) {
   return state.teams
 }
+export function getMsgs (state) {
+  return state.msgs
+}
+export function getCurrentSession (state) {
+  return state.currentSession
+}
+export function getSendText (state) {
+  return state.sendText
+}

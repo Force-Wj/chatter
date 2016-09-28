@@ -28,7 +28,11 @@ export default {
     state.personinfo = util.assign({}, state.personinfo, info)
   },
   PERSONINFO (state, data) {
-
+    for (var index = 0; index < data.length; index++) {
+      const info = {}
+      info[data[index].account] = data[index]
+      state.personinfo = util.assign({}, state.personinfo, info)
+    }
   },
   SESSION (state, data, nim) {
     state.sessions = nim.mergeSessions(state.sessions, data)
