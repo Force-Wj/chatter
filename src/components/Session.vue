@@ -1,21 +1,22 @@
 <template>
   <ul>
-    <li v-for="item in sessions" @click="getMsgs(item)">
+    <li v-for="item in getSessions" @click="getMsgs(item)">
       {{ item.scene }} -> {{ item.to }}
     </li>
   </ul>
 </template>
 <script>
-import { getMsgs } from '../vuex/actions'
-import { getSessions } from '../vuex/getters'
+import { mapGetters, mapActions } from 'vuex'
 export default {
-  vuex: {
-    getters: {
-      sessions: getSessions
-    },
-    actions: {
-      getMsgs
-    }
+  computed: {
+    ...mapGetters([
+      'getSessions'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'getMsgs'
+    ])
   }
 }
 </script>

@@ -4,11 +4,7 @@ import store from './vuex/store'
 import { connect } from './link'
 new Vue({
   el: '#app',
-  template: '<div class="m_chatter"><app></app></div>',
   store,
-  components: {
-    App
-  }
+  render: h => h(App)
 })
-store.nim = connect(store)
-window.store = store
+store.state.nim = connect(store)

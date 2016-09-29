@@ -1,17 +1,17 @@
 <template>
   <ul>
-    <li v-for="item in teams">
+    <li v-for="item in getTeams">
       {{ item.teamId }}
     </li>
   </ul>
 </template>
 <script>
-import { getTeams } from '../vuex/getters'
+import { mapGetters } from 'vuex'
 export default {
-  vuex: {
-    getters: {
-      teams: getTeams
-    }
+  computed: {
+    ...mapGetters([
+      'getTeams'
+    ])
   }
 }
 </script>

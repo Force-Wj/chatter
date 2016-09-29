@@ -32,7 +32,8 @@ export default {
       }
     }
   },
-  ADDMSG (state, data, id) {
+  ADDMSG (state, { data, id }) {
+    debugger
     if (!state.msgs[id]) {
       const info = {}
       info[id] = []
@@ -40,7 +41,7 @@ export default {
     }
     state.msgs[id].push(data)
   },
-  SENDMSGDONE (state, data, id) {
+  SENDMSGDONE (state, { data, id }) {
     const msgs = state.msgs[id]
     for (let index = msgs.length - 1; index >= 0; index--) {
       const element = msgs[index]

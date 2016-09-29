@@ -15,8 +15,8 @@ export default {
   SYNCMUTELIST (state, data) {
     // todo
   },
-  FRIEND (state, data, nim) {
-    var friends = nim.mergeFriends(state.friends, data)
+  FRIEND (state, { data, nim }) {
+    const friends = nim.mergeFriends(state.friends, data)
     state.friends = nim.cutFriends(friends, data.invalid)
   },
   SYNCFRIEND (state, data) {
@@ -28,17 +28,17 @@ export default {
     state.personinfo = util.assign({}, state.personinfo, info)
   },
   PERSONINFO (state, data) {
-    for (var index = 0; index < data.length; index++) {
+    for (let index = 0; index < data.length; index++) {
       const info = {}
       info[data[index].account] = data[index]
       state.personinfo = util.assign({}, state.personinfo, info)
     }
   },
-  SESSION (state, data, nim) {
+  SESSION (state, { data, nim }) {
     state.sessions = nim.mergeSessions(state.sessions, data)
   },
-  TEAM (state, data, nim) {
-    var teams = nim.mergeTeams(state.teams, data)
+  TEAM (state, { data, nim }) {
+    const teams = nim.mergeTeams(state.teams, data)
     state.teams = nim.cutTeams(teams, data.invalid)
   },
   SHOWLOADING (state, flag) {

@@ -61,7 +61,7 @@ export function getUsers (nim, accounts, callback) {
  * 检查是否有用户信息
  *
  */
-export function checkUserInfo ({ nim, state, dispatch }, array, callback) {
+export function checkUserInfo ({ nim, state, commit }, array, callback) {
   const arr = []
   for (let i = array.length - 1; i >= 0; i--) {
     if (!state.personinfo[array[i]]) {
@@ -71,9 +71,9 @@ export function checkUserInfo ({ nim, state, dispatch }, array, callback) {
   if (arr.length > 0) {
     getUsers(nim, arr, (err, data) => {
       if (err) {
-        dispatch('SHOWERROR', err)
+        commit('SHOWERROR', err)
       } else {
-        dispatch('PERSONINFO', data)
+        commit('PERSONINFO', data)
         callback()
       }
     })

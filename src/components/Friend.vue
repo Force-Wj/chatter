@@ -1,17 +1,17 @@
 <template>
   <ul>
-    <li v-for="item in friends">
+    <li v-for="item in getFriends">
       {{ item.account }}
     </li>
   </ul>
 </template>
 <script>
-import { getFriends } from '../vuex/getters'
+import { mapGetters } from 'vuex'
 export default {
-  vuex: {
-    getters: {
-      friends: getFriends
-    }
+  computed: {
+    ...mapGetters([
+      'getFriends'
+    ])
   }
 }
 </script>

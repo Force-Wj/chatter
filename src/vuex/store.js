@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import mutations from './mutations/index'
+import mutations from './mutations'
+import getters from './getters'
+import actions from './actions'
 // 告诉 vue “使用” vuex
 Vue.use(Vuex)
 // 创建一个对象来保存应用启动时的初始状态
@@ -25,11 +27,12 @@ const state = {
   sysmsgcount: 0,
   sendtext: ''
 }
-mutations.SHOWERROR = (err) => console.log(err)
-window.mutations = mutations
+// mutations.SHOWERROR = (err) => console.log(err)
 // 整合初始状态和变更函数，我们就得到了我们所需的 store
 // 至此，这个 store 就可以连接到我们的应用中
 export default new Vuex.Store({
   state,
+  getters,
+  actions,
   mutations
 })

@@ -1,6 +1,6 @@
 <template>
   <div class="chatter_m_contact">
-    <div v-if="loading">
+    <div v-if="getLoadingStatus">
       loading
     </div>
     <div v-else>
@@ -14,12 +14,12 @@
   import Session from './Session.vue'
   import Friend from './Friend.vue'
   import Team from './Team.vue'
-  import { getLoadingStatus} from '../vuex/getters'
+  import { mapGetters } from 'vuex'
   export default {
-    vuex: {
-      getters: {
-        loading: getLoadingStatus    
-      }
+    computed: {
+      ...mapGetters([
+        'getLoadingStatus'
+      ])
     },
     components: {
       Session,

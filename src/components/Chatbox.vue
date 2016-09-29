@@ -1,44 +1,42 @@
 <template>
-  ------box-----
-  <div v-if="currentSession">
-    <ul>
-      <li v-for="item in localMsg">
-        {{ item.text }}----{{item.status}}
-      </li>
-    </ul>
-    <input type="text" v-el:ipt ><button @click='send'>发送</button>
+  <div>
+    ------box-----
+    <div v-if="getCurrentSession">
+      <ul>
+        <li v-for="item in getMsgs">
+          {{ item.text }}----{{item.status}}
+        </li>
+      </ul>
+      <input type="text" ref="ipt" ><button @click='send'>发送</button>
+    </div>
   </div>
 </template>
 <script>
-  import { getMsgs, getCurrentSession, getSendText } from '../vuex/getters'
-  import { sendMsg } from '../vuex/actions'
-  export default {
-    vuex: {
-      getters: {
-        msgs: getMsgs,
-        currentSession: getCurrentSession
-      },
-      actions: {
-        sendMsg
-      }
-    },
-    methods: {
-      send: function (){
-        const value = this.$els.ipt.value.trim()
-        if (!value) return
-        this.sendMsg(value)
-        this.$els.ipt.value = ''
-      }
-    },
-    watch: {
-      'currentSession': function () {
-        this.$els.ipt.value = ''
-      }
-    },
-    computed: {
-      localMsg () {
-        return this.msgs[this.currentSession] || []
+import { mapGetters, mapActions } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters([
+      'getMsgs',
+      'getCurrentSession'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'sendMsg'
+    ]),
+    send: function (){
+      const value = this.$refs.ipt.value.trim()
+      if (!value) return
+      this.sendMsg(value)
+      this.$refs.ipt.value = ''
+    }
+  },
+  watch: {
+    'getCurrentSession': function () {
+      if (this.$refs.ipt) {
+        this.$refs.ipt.value = ''
       }
     }
   }
+}
 </script>

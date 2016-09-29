@@ -1,16 +1,18 @@
 <template>
-  accid is {{ account }}
-  {{ info?info.nick:'' }}
-  {{ info?info.avatar:'' }}
+  <div>
+    accid is {{ getMyAccount }}
+    {{ getInfo?getInfo.nick:'' }}
+    {{ getInfo?getInfo.avatar:'' }}
+  </div>
 </template>
 <script>
-  import { getMyAccount, getInfo } from '../vuex/getters'
+  import { mapGetters } from 'vuex'
   export default {
-    vuex: {
-      getters: {
-        account: getMyAccount,
-        info: getInfo
-      }
+    computed: {
+      ...mapGetters([
+        'getMyAccount',
+        'getInfo'
+      ])
     }
   }
 </script>

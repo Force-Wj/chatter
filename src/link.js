@@ -1,5 +1,5 @@
 import { getAllAccounts, checkUserInfo } from './util/index'
-export function connect ({ dispatch, state }) {
+export function connect ({ commit, state }) {
   // 收集初始化需要获取的用户信息accid
   const accids = {}
   const nim = NIM.getInstance({
@@ -65,55 +65,55 @@ export function connect ({ dispatch, state }) {
     console && console.log('错误信息' + error)
   }
   function onLoginPortsChange (data) {
-    dispatch('PORTS', data)
+    commit('PORTS', data)
   }
 
   function onBlacklist (data) {
-    dispatch('BLACKLIST', data)
+    commit('BLACKLIST', data)
     for (var i = 0; i < data.length; i++) {
       accids[data[i]] = true
     }
   }
   function onSyncMarkinBlacklist (data) {
-    dispatch('SYNCBLACKLIST', data)
+    commit('SYNCBLACKLIST', data)
   }
 
   function onMutelist (data) {
-    dispatch('MUTELIST', data)
+    commit('MUTELIST', data)
     for (var i = 0; i < data.length; i++) {
       accids[data[i]] = true
     }
   }
 
   function onSyncMarkinMutelist (data) {
-    dispatch('SYNCMUTELIST', data)
+    commit('SYNCMUTELIST', data)
   }
 
   function onFriends (data) {
-    dispatch('FRIEND', data, nim)
+    commit('FRIEND', { data, nim })
   }
   function onSyncFriendAction (data) {
-    dispatch('SYNCFRIEND', data)
+    commit('SYNCFRIEND', data)
   }
 
   function onMyInfo (data) {
-    dispatch('MYINFO', data)
+    commit('MYINFO', data)
   }
 
   function onUsers (data) {
-    dispatch('PERSONINFO', data)
+    commit('PERSONINFO', data)
   }
 
   function onTeams (data) {
-    dispatch('TEAM', data, nim)
+    commit('TEAM', { data, nim })
   }
 
   function onSyncCreateteam (data) {
-    dispatch('ADDTEAM', data)
+    commit('ADDTEAM', data)
   }
 
   function onSessions (data) {
-    dispatch('SESSION', data, nim)
+    commit('SESSION', { data, nim })
     for (let i = 0; i < data.length; i++) {
       if (data[i].scene === 'p2p') {
         accids[data[i].to] = true
@@ -130,22 +130,21 @@ export function connect ({ dispatch, state }) {
   }
   function onUpdateSession (data) {
     // const id = data.id || ''
-    dispatch('SESSION', data, nim)
-    // dispatch('MARKMSGREAD', id)
+    commit('SESSION', { data, nim })
+    // commit('MARKMSGREAD', id)
   }
 
   function onMsg (data) {
-    debugger
     const array = getAllAccounts(data)
-    checkUserInfo({ dispatch, state, nim }, array, () => dispatch('ADDMSG', data, data.sessionId))
+    checkUserInfo({ commit, state, nim }, array, () => commit('ADDMSG', data, data.sessionId))
   }
 
   function saveMsgs (data) {
-    dispatch('SYNCMSG', data)
+    commit('SYNCMSG', data)
   }
 
   function onSyncDone () {
-    dispatch('SHOWLOADING', false)
+    commit('SHOWLOADING', false)
   }
   return nim
 }

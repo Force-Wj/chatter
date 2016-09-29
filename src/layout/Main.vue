@@ -1,6 +1,8 @@
-<template>  
+<template> 
+  <div class="m-chatter">
     <Left></Left>
     <Right></Right>
+  </div> 
 </template>
 
 <script>
