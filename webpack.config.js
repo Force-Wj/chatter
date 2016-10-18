@@ -5,6 +5,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
+    library: 'NIMChatter',
+    libraryTarget: 'umd',
     filename: 'build.js'
   },
   module: {

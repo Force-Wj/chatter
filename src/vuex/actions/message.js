@@ -17,11 +17,14 @@ export default {
   },
   getMsgs ({ commit, state }, item) {
     const nim = state.nim
-    commit('SETCURRENT', item)
-    const id = item.id
+    item && commit('SETCURRENT', item)
+    const id = state.currentSession
+    if (!id) {
+      return
+    }
     const msgs = state.msgs[id] || []
     const msgid = (msgs.length > 0) ? msgs[0].idClient : false
-    if (item.unread >= msgs.length) {
+    if (!item || item.unread >= msgs.length) {
       const callback = function (err, data) {
         if (!err) {
           const array = getAllAccounts(data.msgs)

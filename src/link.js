@@ -1,12 +1,15 @@
 import { getAllAccounts, checkUserInfo } from './util/index'
-export function connect ({ commit, state }) {
+export function connect ({ commit, dispatch, state }, options) {
   // 收集初始化需要获取的用户信息accid
-  const accids = {}
+  let accids = {}
+  if (options.currentaccount && options.currentscene) {
+    accids[options.currentaccount] = true
+  }
   const nim = NIM.getInstance({
     debug: true,
-    appKey: '45c6af3c98409b18a84451215d0bdd6e',
-    account: 'wujie2',
-    token: 'e10adc3949ba59abbe56e057f20f883e',
+    appKey: options.appkey,
+    account: options.account,
+    token: options.token,
     // 连接
     onconnect: onConnect.bind(this),
     ondisconnect: onDisconnect.bind(this),
@@ -144,7 +147,8 @@ export function connect ({ commit, state }) {
   }
 
   function onSyncDone () {
-    commit('SHOWLOADING', false)
+    dispatch('syncDone', accids)
+    accids = {}
   }
   return nim
 }

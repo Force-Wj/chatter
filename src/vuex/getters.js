@@ -2,8 +2,13 @@ export default {
   getMyAccount (state) {
     return state.account
   },
-  getInfo (state) {
-    return state.personinfo[state.account]
+  getInfo (state, id, scene) {
+    return (id, scene) => {
+      scene || (scene = 'p2p')
+      if (scene === 'p2p') {
+        return state.personinfo[id] || {}
+      }
+    }
   },
   getLoadingStatus (state) {
     return state.loading
@@ -26,7 +31,16 @@ export default {
   getCurrentSession (state) {
     return state.currentSession
   },
+  getCurrentAccount (state) {
+    return state.currentAccount
+  },
+  getCurrentScene (state) {
+    return state.currentScene
+  },
   getSendText (state) {
     return state.sendText
+  },
+  getMode (state) {
+    return state.mode
   }
 }

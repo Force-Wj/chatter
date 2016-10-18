@@ -33,7 +33,6 @@ export default {
     }
   },
   ADDMSG (state, { data, id }) {
-    debugger
     if (!state.msgs[id]) {
       const info = {}
       info[id] = []
