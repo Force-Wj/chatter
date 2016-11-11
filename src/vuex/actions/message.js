@@ -1,6 +1,6 @@
 import { getAllAccounts, checkUserInfo } from '../../util/index'
 export default {
-  sendMsg ({ commit, state }, text) {
+  sendMsg ({ commit, state }, { text, callback }) {
     const nim = state.nim
     const msg = nim.sendText({
       scene: state.currentScene,
@@ -11,6 +11,7 @@ export default {
           commit('SHOWERROR', err)
         }
         commit('SENDMSGDONE', { data: data, id: state.currentSession })
+        callback()
       }
     })
     commit('ADDMSG', { data: msg, id: state.currentSession })
@@ -49,7 +50,7 @@ export default {
         done: callback
       })
     } else {
-      return []
+      return msgs
     }
   }
 }

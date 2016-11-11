@@ -1,5 +1,5 @@
 <style lang='sass'>
-@import "./../assets/scss/index";
+@import "./../scss/index";
 </style>
 <template> 
   <div class="m-chatter">

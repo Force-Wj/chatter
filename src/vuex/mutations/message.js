@@ -32,6 +32,17 @@ export default {
       }
     }
   },
+  SYNCMSG (state, { msgs, sessionId }) {
+    let info = state.msgs[sessionId] || []
+    info = info.concat(msgs)
+    if (!state.msgs[sessionId]) {
+      const obj = {}
+      obj[sessionId] = info
+      state.msgs = util.assign({}, state.msgs, obj)
+    } else {
+      state.msgs[sessionId] = info
+    }
+  },
   ADDMSG (state, { data, id }) {
     if (!state.msgs[id]) {
       const info = {}
