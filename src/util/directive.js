@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { escape, buildEmoji } from '../util'
+import { escape, buildEmoji } from './index'
 Vue.directive('msg', {
   bind: (el, binding, cnode) => {
     el.innerHTML = buildEmoji(escape(binding.value))

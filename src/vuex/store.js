@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import mutations from './mutations'
+import * as mutations from './mutations'
 import getters from './getters'
-import actions from './actions'
+import * as actions from './actions'
 // 告诉 vue “使用” vuex
 Vue.use(Vuex)
 

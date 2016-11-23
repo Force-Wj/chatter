@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import './base/filter'
-import './base/directive'
+import './util/filter'
+import './util/directive'
 import App from './layout/Main.vue'
 import { initStore } from './vuex/store'
-import { connect } from './base/link'
-import { CONFIG } from './base/config'
+import { connect } from './vuex/link'
+import { CONFIG } from './util/config'
 const checkOptions = function (options) {
   // todo 校验
   return true

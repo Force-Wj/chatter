@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { transTime, transTime2 } from '../util'
+import { transTime, transTime2 } from './index'
 import { CONFIG } from './config'
 Vue.filter('transTime', (v) => {
   return transTime(v)

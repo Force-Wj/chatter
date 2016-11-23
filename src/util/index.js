@@ -1,7 +1,6 @@
-import _ from 'lodash'
-import { emojiMap } from './emoji.js'
-import { CONFIG } from '../base/config'
-export const util = _
+import { emojiMap } from './emoji'
+import { CONFIG } from './config'
+
 /**
  *  拿所有消息中涉及到的账号（为了正确显示昵称=。=）
  **/
